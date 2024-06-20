@@ -15,8 +15,8 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   size: "large",
   text: "中国诗词经典·Chinese Poetry Classics·",
-  innerText: "诗",
-  color: "rgba(104,54,26,.85)"
+  innerText: "诗词",
+  // color: "rgba(104,54,26,.85)"
 })
 const cursorInner = ref(null)
 const cursorOuter = ref(null)
@@ -102,6 +102,7 @@ onUnmounted(() => {
     transition: width ease .6s, height ease .6s, color ease .4s;
     overflow: hidden;
     white-space: nowrap;
+    background: $color-red;
 
     &::before {
       content: attr(data-text);
@@ -132,7 +133,7 @@ onUnmounted(() => {
       text {
         animation: rotation 10s linear infinite;
         transform-origin: 50%;
-        fill: $apc-blue;
+        fill: $color-primary;
         font-size: 16px;
       }
     }
@@ -165,12 +166,30 @@ onUnmounted(() => {
     display: none;
     width: 32px;
     height: 32px;
+    border-radius: 50%;
+    mix-blend-mode: difference;
 
     & + .custom-cursor-inner {
-      width: 16px;
-      height: 16px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       mix-blend-mode: difference;
+    }
+  }
+
+  .cursor-middle {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    mix-blend-mode: color-burn;
+    backdrop-filter: blur(.8px);
+
+    & + .custom-cursor-inner {
+      display: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      mix-blend-mode: color-burn;
     }
   }
 }

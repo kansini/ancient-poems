@@ -10,3 +10,9 @@ export interface IAuthor {
     name: string;
     desc: string;
 }
+
+export interface IPoetry {
+    id: number;
+    title: string;
+    desc: string;
+}

@@ -10,6 +10,10 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  duration: {
+    type: Number,
+    default: 500,
+  },
   scale: {
     type: Number,
     default: 1,
@@ -29,8 +33,8 @@ const containerStyle: CSSProperties = {
 const cardStyle = computed(() => ({
   height: "max-content",
   width: "max-content",
-  transition: ".5s ease-out all",
-  transform: `rotateX(${parallax.roll * 10}deg) rotateY(${parallax.tilt * props.depth}deg) scale(${props.scale})`,
+  transition: `${props.duration}ms ease-out all`,
+  transform: `translateX(${parallax.tilt * props.depth}px) translateY(${parallax.tilt * props.depth}px) rotateX(${parallax.roll * 10}deg) rotateY(${parallax.tilt * props.depth}deg) scale(${props.scale})`,
 }))
 </script>
 

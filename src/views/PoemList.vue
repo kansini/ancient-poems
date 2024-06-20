@@ -5,7 +5,7 @@ import {getList} from "@/api/getList";
 import {IPoem} from "@/type";
 const poemsList = reactive<IPoem[]>([])
 const getPoemsList = () => {
-  getList("/poems/poet.tang.1000.json", {author: "李白"}).then((res: any) => {
+  getList("/poems/poet.tang.1000.json").then((res: any) => {
     Object.assign(poemsList, res.data)
   })
 }
