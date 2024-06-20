@@ -14,7 +14,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   size: "large",
-  text: "中国古代诗词·Ancient Poems  of China·",
+  text: "中国诗词经典·Chinese Poetry Classics·",
   innerText: "诗",
   color: "rgba(104,54,26,.85)"
 })
@@ -121,7 +121,6 @@ onUnmounted(() => {
     transition: width ease-in-out .3s, height ease-in-out .3s;
 
     & + .custom-cursor-inner {
-      //background: $tcc-red;
       width: 56px;
       height: 56px;
       padding: 4px;
@@ -175,6 +174,4 @@ onUnmounted(() => {
     }
   }
 }
-
-
 </style>
