@@ -2,41 +2,49 @@
   {
     "id": 0,
     "title": "诗经",
+    "name": "shijing",
     "desc": "最古老的诗集"
   },
   {
     "id": 1,
     "title": "楚辞",
+    "name": "chuci",
     "desc": "浪漫主义诗集"
   },
   {
     "id": 2,
-    "title": "纳兰性德",
-    "desc": "近世倚声填词之祖"
+    "title": "全唐诗",
+    "name": "tangshi",
+    "desc": "古代诗歌之巅"
   },
   {
     "id": 3,
-    "title": "全唐诗",
-    "desc": "近世倚声填词之祖"
+    "title": "宋词选集",
+    "name": "songci",
+    "desc": "文人审美与情感世界"
   },
   {
     "id": 4,
-    "title": "宋词选集",
-    "desc": "近世倚声填词之祖"
+    "title": "元曲选集",
+    "name": "yuanqu",
+    "desc": "音韵与人生百态"
   },
   {
     "id": 5,
-    "title": "元曲选集",
+    "title": "花间集",
+    "name": "huajianji",
     "desc": "近世倚声填词之祖"
   },
   {
     "id": 6,
-    "title": "花间集",
-    "desc": "近世倚声填词之祖"
+    "title": "南唐二主词",
+    "name": "nantang",
+    "desc": "不爱江山爱诗词"
   },
   {
     "id": 7,
-    "title": "南唐二主词",
-    "desc": "不爱江山爱诗词"
+    "title": "纳兰性德",
+    "name": "nalan",
+    "desc": "情深意切·婉约哀怨"
   }
 ]

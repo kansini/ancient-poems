@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import Parallax from "@/components/kits/Parallax.vue"
+import Parallax from "@/components/kits/Parallax.vue";
+import userMotion from "@/hooks/useMotion";
+
+const {motionOption} = userMotion();
 
 const emit = defineEmits(["click"])
 const onClick = () => {
@@ -9,7 +12,12 @@ const onClick = () => {
 
 <template>
   <div class="title" @click="onClick">
-    <parallax class="title-cn">
+    <parallax
+        class="title-cn"
+        v-motion
+        :initial="motionOption.initial"
+        :enter="motionOption.enter"
+    >
       <svg width="80px" height="268px" viewBox="0 0 80 268" xmlns="http://www.w3.org/2000/svg">
         <g id="title-cn">
           <path
@@ -19,7 +27,16 @@ const onClick = () => {
         </g>
       </svg>
     </parallax>
-    <parallax class="title-en" :scale="1" :depth="20" :duration="2000">
+    <parallax
+        class="title-en"
+        :scale="1"
+        :depth="20"
+        :duration="2000"
+        v-motion
+        :initial="motionOption.initial"
+        :enter="motionOption.enter"
+        :delay="300"
+    >
       <svg width="78px" height="74px" viewBox="0 0 78 74"> xmlns="http://www.w3.org/2000/svg">
         <g id="title-en">
           <path
@@ -90,6 +107,10 @@ const onClick = () => {
         class="title-stamp"
         :depth="20"
         :duration="1000"
+        v-motion
+        :initial="motionOption.initial"
+        :enter="motionOption.enter"
+        :delay="500"
     >
       <svg width="48px" height="88px" viewBox="0 0 48 88" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g class="stamp-svg">

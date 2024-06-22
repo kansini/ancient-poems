@@ -1,27 +1,40 @@
 <script setup lang="ts">
-import {onMounted, reactive} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import {getList} from "@/api/getList.ts";
 import {IPoetry} from "@/type";
 import PoetryItem from "@/components/PoetryItem.vue";
-import userMotion from "@/hooks/useMotion";
 import {useRouter} from "vue-router";
-import PButton from "@/components/kits/Button.vue";
 import {useCursorStore} from "@/store";
+import PoemList from "@/views/PoemList.vue";
+import CoverTitle from "@/components/Title.vue";
 
 const cursorState = useCursorStore();
 
 const router = useRouter();
 const back = () => {
-  router.push("/")
+  current.value = -1
+  router.push("/poetry")
 }
+const current = ref(-1)
 
-const {motionOption} = userMotion();
-
+const setCursor = (type: string) => {
+  cursorState.setCursor(type)
+}
+const handleMouseEnter = () => {
+  setCursor("middle")
+}
+const handleMouseLeave = () => {
+  setCursor("default")
+}
 const poetryList = reactive<IPoetry[]>([])
 const getPoetryList = async () => {
   getList("poetry.json").then((res: any) => {
     Object.assign(poetryList, res.data)
   })
+}
+
+const onClickItem = (id: number) => {
+  current.value = id
 }
 onMounted(() => {
   getPoetryList()
@@ -30,26 +43,27 @@ onMounted(() => {
 
 <template>
   <div class="poetry-list">
-    <div class="poetry-list-content"
-         @mouseenter="cursorState.setCursor('middle')"
-         @mouseleave="cursorState.setCursor('default')"
+    <div
+        class="poetry-list-container"
+        @mouseenter="handleMouseEnter"
+        @mouseleave="handleMouseLeave"
     >
-      <poetry-item
-          v-for="(poetry,index) in poetryList"
-          :data="poetry"
-          v-motion
-          :initial="motionOption.initial"
-          :enter="motionOption.enter"
-          :delay="20 + 200 * index"
-      />
+      <cover-title v-if="current === -1" @click="router.push('/')"/>
+      <div class="poetry-list-content">
+        <template v-for="(poetry,index) in poetryList">
+          <poetry-item
+              v-if="current === -1 || current === index"
+              :active="current === index"
+              :data="poetry"
+              :delay="100 + 200 * index"
+              @click="onClickItem"
+          />
+        </template>
+      </div>
     </div>
-    <p-button
-        @click="back"
-        text="返回"
-        @mouseenter="cursorState.setCursor('mini')"
-        @mouseleave="cursorState.setCursor('default')"
-    />
+    <poem-list @back="back" v-if="current > -1"/>
   </div>
+
 </template>
 
 <style scoped lang="scss">
@@ -58,15 +72,26 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  width: 100%;
 
-  .poetry-list-content {
+  .poetry-list-container {
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     gap: 80px;
+
+    .poetry-list-content {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-evenly;
+      width: 70%;
+      flex-wrap: wrap;
+    }
   }
+
 }
 
 </style>

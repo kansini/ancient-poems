@@ -1,18 +1,10 @@
-<template>
-  <button
-      class="tb-btn"
-      @click="handleToButton"
-      @mouseenter="handleMouseEnter"
-  >
-    <div>
-      <span :data-text="text" :class="direction">
-        {{ text }}
-      </span>
-    </div>
-  </button>
-</template>
-
 <script lang="ts" setup>
+import userMotion from "@/hooks/useMotion";
+import {useCursorStore} from "@/store";
+
+const cursorState = useCursorStore();
+
+const {motionOption} = userMotion();
 defineProps({
   text: {
     type: String,
@@ -28,10 +20,30 @@ const handleToButton = () => {
   emit("click")
 }
 const handleMouseEnter = () => {
+  cursorState.setCursor("mini")
   emit("mouseenter")
 }
+const handleMouseLeave = () => {
+  cursorState.setCursor("default")
+}
 </script>
-
+<template>
+  <button
+      v-motion
+      :initial="motionOption.initial"
+      :enter="motionOption.enter"
+      class="tb-btn"
+      @click="handleToButton"
+      @mouseenter="handleMouseEnter"
+      @mouseleave="handleMouseLeave"
+  >
+    <div>
+      <span :data-text="text" :class="direction">
+        {{ text }}
+      </span>
+    </div>
+  </button>
+</template>
 <style lang="scss" scoped>
 button {
   border: none;

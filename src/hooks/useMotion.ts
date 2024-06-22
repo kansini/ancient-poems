@@ -19,17 +19,17 @@ export default function () {
         initial: {
             opacity: 0,
             filter: "blur(20px)",
-            transform: "scale(0.2)"
+            // transform: "scale(0.2)"
         },
         enter: {
             opacity: 1,
             filter: "blur(0px)",
-            transform: "scale(1)"
+            // transform: "scale(1)"
         },
         leave: {
             opacity: 0,
             filter: "blur(20px)",
-            transform: "scale(0.5)"
+            // transform: "scale(0.5)"
         }
     })
     return {

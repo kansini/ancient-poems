@@ -14,5 +14,14 @@ export interface IAuthor {
 export interface IPoetry {
     id: number;
     title: string;
+    name: string;
     desc: string;
+}
+
+export interface IShijing {
+    title: string;
+    chapter: string;
+    section: string;
+    content: string[]
+
 }
