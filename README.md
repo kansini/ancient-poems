@@ -1,13 +1,13 @@
-# TraditionalMusicalInstruments
+# 中国诗词经典·Chinese Classical Poetry
 
-中国传统乐器·Traditional Chinese musical instruments
-
-vue3 + vite + typescript
+### vue3 + vite + typescript
 ```bash
-git clone https://github.com/kansini/TraditionalMusicalInstruments.git
+git clone https://github.com/kansini/ancient-poems.git
 yarn install
 yarn dev
 ```
 ## Project preview
 
-![01.jpg](./screenshot/1.jpeg)
+![1.jpg](./screenshot/1.jpg)
+![2.jpg](./screenshot/2.jpg)
+![3.jpg](./screenshot/3.jpg)
