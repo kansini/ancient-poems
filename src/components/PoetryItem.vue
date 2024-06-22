@@ -24,7 +24,7 @@ const onMouseenter = () => {
   emit("mouseenter")
 }
 const handleClick = (data: IPoetry) => {
-  emit("click", data.id)
+  emit("click", data)
 }
 </script>
 
@@ -95,7 +95,7 @@ const handleClick = (data: IPoetry) => {
   &:hover {
     &::before {
       transform: scaleX(1);
-      background: $color-gold;
+      //background: $color-gold;
     }
   }
 

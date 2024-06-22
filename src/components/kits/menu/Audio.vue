@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import TmiAnimation from "@/components/kits/Animation.vue";
+import PAnimation from "@/components/kits/Animation.vue";
 import {useMuteStore} from "@/store";
 
 const state = useMuteStore();
@@ -42,7 +42,7 @@ const onMouseenterAni = () => {
 <!--  <audio ref="audioPlayer" autoplay muted>-->
 <!--    <source :src="`./audio/${name}.mp3`" type="audio/mp3">-->
 <!--  </audio>-->
-  <tmi-animation
+  <p-animation
       name="music"
       @click="onClickAni"
       @mouseenter="onMouseenterAni"

@@ -29,6 +29,10 @@ const props = defineProps({
     default: () => {
       return {}
     }
+  },
+  autoplay:{
+    type: Boolean,
+    default: false
   }
 })
 const id = uuid('ani-')
@@ -38,7 +42,7 @@ const init = () => {
     container: cv,
     renderer: 'canvas',
     loop: true,
-    autoplay: false,
+    autoplay: props.autoplay,
     path: `./aniList/${props.name}.json`
   })
 }

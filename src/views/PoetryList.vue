@@ -12,8 +12,8 @@ const cursorState = useCursorStore();
 
 const router = useRouter();
 const back = () => {
-  current.value = -1
-  router.push("/poetry")
+  current.value = -1;
+  showPoetryList.value = false;
 }
 const current = ref(-1)
 
@@ -32,9 +32,12 @@ const getPoetryList = async () => {
     Object.assign(poetryList, res.data)
   })
 }
-
-const onClickItem = (id: number) => {
-  current.value = id
+const showPoetryList = ref(false)
+const poetryName = ref("")
+const onClickItem = (data: IPoetry) => {
+  current.value = data.id
+  showPoetryList.value = true
+  poetryName.value = data.name
 }
 onMounted(() => {
   getPoetryList()
@@ -61,7 +64,11 @@ onMounted(() => {
         </template>
       </div>
     </div>
-    <poem-list @back="back" v-if="current > -1"/>
+    <poem-list
+        @back="back"
+        :name="poetryName"
+        v-model:show="showPoetryList"
+    />
   </div>
 
 </template>
