@@ -1,24 +1,29 @@
 <script setup lang="ts">
+import {ref} from "vue"
 import {IPoem} from "@/type";
 import userMotion from "@/hooks/useMotion";
+import PoemDetail from "./PoemDetail.vue"
+
 const {initial, enter} = userMotion().scaleIn;
 
 defineProps({
   data: {
     type: Object as () => IPoem,
-    default: "tangshi"
+    default: ""
   },
   delay: {
     type: Number,
     default: 0
   }
 })
-
+const showDetail = ref(false)
 
 </script>
 
 <template>
+  <poem-detail v-model:visible="showDetail" :data="data"/>
   <div
+      @click="showDetail = true"
       class="poems-list-item"
       v-motion
       :initial="initial"
@@ -68,6 +73,7 @@ defineProps({
   }
 
   .poems-list-item-content {
+    font-size: 16px;
     display: flex;
     flex-direction: column;
     gap: 16px;

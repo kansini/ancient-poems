@@ -5,7 +5,7 @@ import {IPoetry} from "@/type";
 import PoetryItem from "@/components/PoetryItem.vue";
 import {useRouter} from "vue-router";
 import {useCursorStore} from "@/store";
-import PoemList from "@/views/PoemList.vue";
+import PoemList from "@/components/PoemList.vue";
 import CoverTitle from "@/components/Title.vue";
 
 const cursorState = useCursorStore();
@@ -95,6 +95,7 @@ onMounted(() => {
       flex-direction: row-reverse;
       justify-content: space-evenly;
       width: 70%;
+      gap: 24px;
       flex-wrap: wrap;
     }
   }

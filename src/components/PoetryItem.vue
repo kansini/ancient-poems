@@ -70,11 +70,11 @@ const handleClick = (data: IPoetry) => {
     }
 
     .poetry-item-title {
-      font-size: 28px;
+      font-size: 32px;
     }
 
     .poetry-item-desc {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 
@@ -100,11 +100,11 @@ const handleClick = (data: IPoetry) => {
   }
 
   .poetry-item-title {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .poetry-item-desc {
-    font-size: 14px;
+    font-size: 18px;
     color: $color-gold;
   }
 }

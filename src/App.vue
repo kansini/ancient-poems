@@ -15,7 +15,6 @@ const cursorState = useCursorStore();
 
 <style lang="scss">
 #app {
-  font-family: "nanyongmingti", serif;
   width: 100%;
   height: 100vh;
   display: flex;

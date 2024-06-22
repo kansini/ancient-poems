@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TmiButton from "@/components/kits/Button.vue";
+import PButton from "@/components/kits/Button.vue";
 import {useCursorStore} from "@/store";
 
 const cursorState = useCursorStore()
 
-const show = defineModel("show", {
+const visible = defineModel("visible", {
   default: false,
 })
 defineProps({
@@ -23,19 +23,19 @@ defineProps({
   <teleport to="body">
     <transition name="fadeDown">
       <div
-          class="tmi-modal"
+          class="modal"
           :style="{background:bgColor}"
-          v-if="show"
+          v-if="visible"
       >
-        <div class="tmi-modal-header">
-          <tmi-button
-              text="关"
+        <div class="modal-header">
+          <p-button
+              text="关闭"
               @mouseenter="cursorState.setCursor('mini','')"
               @mouseleave="cursorState.setCursor('default')"
-              @click="show = false"
+              @click="visible = false"
           />
         </div>
-        <div class="tmi-modal-content">
+        <div class="modal-content">
           <slot></slot>
         </div>
       </div>
@@ -44,36 +44,31 @@ defineProps({
 </template>
 
 <style scoped lang="scss">
-.tmi-modal {
-  font-family: "nanyongmingti", serif;
+.modal {
   left: 0;
   top: 0;
   position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: 999;
-  background: rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, .5);
   backdrop-filter: saturate(120%) blur(10px);
 
-  .tmi-modal-header {
+  .modal-header {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     padding: 16px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
   }
 
-  .tmi-modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  .modal-content {
     width: 100%;
-    height: calc(100% - 72px);
-    padding: 0 40px;
-    overflow-y: auto;
-    writing-mode: vertical-rl;
-    gap: 24px;
-    font-size: 18px;
+    height: 100%;
+    padding: 16px 0;
   }
 }
 </style>
