@@ -2,7 +2,7 @@
 import {IPoetry} from "@/type";
 import userMotion from "@/hooks/useMotion";
 
-const {motionOption} = userMotion();
+const {fadeIn} = userMotion();
 
 defineProps({
   data: {
@@ -32,8 +32,8 @@ const handleClick = (data: IPoetry) => {
   <div class="poetry-item"
        :class="{'is-active':active}"
        v-motion
-       :initial="motionOption.initial"
-       :enter="motionOption.enter"
+       :initial="fadeIn.initial"
+       :enter="fadeIn.enter"
        :delay="delay"
        @mouseenter="onMouseenter"
        @click="handleClick(data)"

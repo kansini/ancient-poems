@@ -1,7 +1,9 @@
 export interface IPoem {
     id: string;
     title: string;
-    author: string;
+    author?: string;
+    chapter?: string;
+    section?: string;
     paragraphs: string[];
 }
 

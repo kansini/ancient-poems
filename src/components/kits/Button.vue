@@ -4,7 +4,7 @@ import {useCursorStore} from "@/store";
 
 const cursorState = useCursorStore();
 
-const {motionOption} = userMotion();
+const {scaleIn} = userMotion();
 defineProps({
   text: {
     type: String,
@@ -30,8 +30,8 @@ const handleMouseLeave = () => {
 <template>
   <button
       v-motion
-      :initial="motionOption.initial"
-      :enter="motionOption.enter"
+      :initial="scaleIn.initial"
+      :enter="scaleIn.enter"
       class="tb-btn"
       @click="handleToButton"
       @mouseenter="handleMouseEnter"

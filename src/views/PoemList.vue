@@ -5,11 +5,11 @@ import {IPoem} from "@/type";
 import PButton from "@/components/kits/Button.vue";
 import userMotion from "@/hooks/useMotion";
 
-const {motionOption} = userMotion();
+const {initial, enter} = userMotion().fadeIn;
 
 const poemsList = reactive<IPoem[]>([])
 const getPoemsList = () => {
-  getList("/poems/poet.tang.1000.json").then((res: any) => {
+  getList("/poems/yuanqu.json").then((res: any) => {
     Object.assign(poemsList, res.data)
   })
 }
@@ -30,12 +30,13 @@ onMounted(() => {
             class="poems-list-item"
             v-if="index < 5"
             v-motion
-            :initial="motionOption.initial"
-            :enter="motionOption.enter"
-            :delay="100 + 300 * index"
+            :initial="initial"
+            :enter="enter"
+            :delay="100+ 100 * index"
         >
           <div class="poems-list-item-title">{{ item.title }}</div>
-          <div class="poems-list-item-author">唐·{{ item.author }}</div>
+          <div class="poems-list-item-author" v-if="item.author">{{ item.author }}</div>
+          <div class="poems-list-item-author" v-else>{{ item.chapter }}·{{ item.section }}</div>
           <div class="poems-list-item-content">
         <span v-for="(line, index) in item.paragraphs" :key="index">
           {{ line }}
@@ -67,6 +68,9 @@ onMounted(() => {
       display: flex;
       flex-direction: column;
       gap: 16px;
+      flex-wrap: wrap;
+      max-height: 440px;
+      line-height: 1.5;
 
       .poems-list-item-title {
         font-size: 18px;
@@ -75,7 +79,7 @@ onMounted(() => {
 
       .poems-list-item-author {
         font-size: 12px;
-        padding: 12px 8px;
+        padding: 12px 4px;
         height: max-content;
         border-radius: 40px;
         color: #fff;
@@ -88,8 +92,6 @@ onMounted(() => {
         gap: 16px;
       }
     }
-
-
   }
 }
 
