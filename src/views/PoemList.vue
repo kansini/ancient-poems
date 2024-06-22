@@ -3,10 +3,9 @@ import {ref, watchEffect} from "vue";
 import {getList} from "@/api/getList";
 import {IPoem} from "@/type";
 import PButton from "@/components/kits/Button.vue";
-import userMotion from "@/hooks/useMotion";
 import PAnimation from "@/components/kits/Animation.vue";
+import PoemItem from "@/components/PoemItem.vue"
 
-const {initial, enter} = userMotion().fadeIn;
 
 const poemsList = ref<IPoem[]>([])
 const getPoemsList = (name: string) => {
@@ -33,12 +32,13 @@ const show = defineModel("show", {
 const loading = ref(true)
 watchEffect(() => {
   if (show.value) {
+    loading.value = true;
     getPoemsList(props.name).then((res: any) => {
       poemsList.value = res
     }).finally(() => {
       setTimeout(() => {
         loading.value = false
-      }, 1000)
+      }, 1000);
     })
   }
 })
@@ -46,43 +46,26 @@ watchEffect(() => {
 
 <template>
   <div class="poems-list-container" v-if="show">
-    <div class="poems-list-loading" v-if="loading">
-      <transition name="fadeIn">
+    <transition name="fadeIn">
+      <div class="poems-list-loading" v-if="loading">
         <p-animation
             autoplay
             name="loading-book"
             :width="240"
             :height="240"
         />
-      </transition>
-    </div>
-    <div class="poems-list" v-else>
-      <template v-for="(item, index) in poemsList">
-        <div
-            class="poems-list-item"
-            v-if="index < 5"
-            v-motion
-            :initial="initial"
-            :enter="enter"
-            :delay="100+ 100 * index"
-        >
-          <div class="poems-list-item-title">{{ item.title }}</div>
-          <div class="poems-list-item-author" v-if="item.author">
-            <span v-if="item.section">{{ item.section }}·</span>{{ item.author }}
-          </div>
-          <div class="poems-list-item-author" v-else>{{ item.chapter }}·{{ item.section }}</div>
-          <div class="poems-list-item-content">
-            <template v-for="(line, index) in item.paragraphs">
-              <div v-if="index < 4">
-                {{ line }}
-              </div>
-            </template>
-            <div v-if="item.paragraphs.length > 4">
-              …
-            </div>
-          </div>
-        </div>
-      </template>
+      </div>
+    </transition>
+    <div class="poems-list">
+      <div class="poems-list-content" v-if="!loading">
+        <template v-for="(item, index) in poemsList">
+          <poem-item
+              v-if="index < 5"
+              :data="item"
+              :delay="200+ 300 * index"
+          />
+        </template>
+      </div>
     </div>
     <p-button @click="back" text="返回"/>
   </div>
@@ -97,41 +80,32 @@ watchEffect(() => {
 
   .poems-list {
     font-size: 16px;
-    width: 80%;
-    writing-mode: vertical-rl;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 48px;
+    width: 100%;
+    padding: 0 40px;
+    height: 400px;
 
-    .poems-list-item {
+    .poems-list-content {
+      width: 100%;
+      writing-mode: vertical-rl;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      flex-wrap: wrap;
-      max-height: 440px;
-      line-height: 1.5;
-
-      .poems-list-item-title {
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .poems-list-item-author {
-        font-size: 12px;
-        padding: 12px 4px;
-        height: max-content;
-        border-radius: 40px;
-        color: #fff;
-        background: $color-red;
-      }
-
-      .poems-list-item-content {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
+      justify-content: center;
+      gap: 64px;
     }
+  }
+
+  .poems-list-loading {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    //background: rgba(255, 255, 255, .1);
+    //backdrop-filter: blur(4px);
+    //z-index: 999;
   }
 }
 
