@@ -30,6 +30,7 @@ defineProps({
         <div class="modal-footer">
           <p-button
               text="关闭"
+              direction="bottom"
               @mouseenter="cursorState.setCursor('mini','')"
               @mouseleave="cursorState.setCursor('default')"
               @click="visible = false"
@@ -68,7 +69,7 @@ defineProps({
   .modal-content {
     width: 100%;
     height: 100%;
-    padding: 16px 0;
+    padding: 0 40px;
   }
 }
 </style>

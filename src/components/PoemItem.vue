@@ -4,7 +4,7 @@ import {IPoem} from "@/type";
 import userMotion from "@/hooks/useMotion";
 import PoemDetail from "./PoemDetail.vue"
 
-const {initial, enter} = userMotion().fadeIn;
+const {initial, enter, leave} = userMotion().fadeIn;
 
 defineProps({
   data: {
@@ -28,6 +28,7 @@ const showDetail = ref(false)
       v-motion
       :initial="initial"
       :enter="enter"
+      :leave="leave"
       :delay="delay"
   >
     <div class="poems-list-item-title">{{ data.title }}</div>
@@ -49,11 +50,20 @@ const showDetail = ref(false)
 .poems-list-item {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   flex-wrap: wrap;
-  max-height: 440px;
+  height: 400px;
   line-height: 1.5;
   cursor: pointer;
+  background: rgba(255, 255, 255, 1);
+  padding: 16px;
+  border-radius: 16px;
+  transition: all ease-in-out .5s;
+
+  &:hover {
+    transform: scale(1.1) translateY(24px) !important;
+    box-shadow: 4px 4px 0 2px rgba(255, 255, 255, .5), 8px 8px 0 2px rgba(255, 255, 255, .2);
+  }
 
   .poems-list-item-title {
     font-size: 18px;
@@ -74,6 +84,8 @@ const showDetail = ref(false)
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-width: 200px;
+    overflow: hidden;
   }
 }
 

@@ -49,18 +49,18 @@ export default function () {
     const slideDown = reactive<IMotionOption>({
         initial: {
             opacity: 0,
-            filter: "blur(20px)",
-            x: 480
+            filter: "blur(8px)",
+            y: -100
         },
         enter: {
             opacity: 1,
             filter: "blur(0px)",
-            x: 0
+            y: 0
         },
         leave: {
             opacity: 0,
-            filter: "blur(20px)",
-            y: -40
+            filter: "blur(10px)",
+            y: -200
         }
     })
     return {

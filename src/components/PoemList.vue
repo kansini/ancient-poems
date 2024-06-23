@@ -48,12 +48,6 @@ const show = defineModel("show", {
   type: Boolean
 })
 const loading = ref(true)
-const position = ref(0)
-const contentStyle = computed(() => {
-  return {
-    transform: `translateX(${position.value}%)`
-  }
-})
 const reload = () => {
   loading.value = true;
   setTimeout(() => {
@@ -95,21 +89,20 @@ watchEffect(() => {
          @mouseenter="cursorState.setCursor('large','下一页')"
          @click="handleNext"></div>
     <div class="poems-list" @mouseenter="cursorState.setCursor('default')">
-      <div class="poems-list-content"
-           v-if="!loading"
-           :style="contentStyle"
-      >
+      <div class="poems-list-content" v-if="!loading">
         <template v-for="(item,index) in poemsList">
           <poem-item
-              :delay="100+ index * 200"
+              :delay="index * 200"
               :data="item"/>
         </template>
       </div>
     </div>
     <div class="btn-group">
-      <p-button v-if="current > 1" text="上一页" @click="handlePre"/>
+      <p-button direction="top" v-if="current < totalPage" text="末页" @click="current = totalPage"/>
+      <p-button direction="left" v-if="current > 1" text="上一页" @click="handlePre"/>
       <p-button v-if="current < totalPage" text="下一页" @click="handleNext"/>
-      <p-button @click="back" text="返回"/>
+      <p-button direction="top" v-if="current > 1" text="首页" @click="current = 1"/>
+      <p-button direction="top" @click="back" text="目录"/>
     </div>
   </div>
 </template>
@@ -144,8 +137,8 @@ watchEffect(() => {
     position: relative;
     font-size: 16px;
     width: calc(100% - 240px);
-    height: 400px;
-    overflow: hidden;
+    //height: 400px;
+    //overflow: hidden;
 
 
     .poems-list-content {
@@ -154,7 +147,7 @@ watchEffect(() => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 48px;
+      gap: 40px;
       transition: all ease .3s;
     }
   }
@@ -171,9 +164,14 @@ watchEffect(() => {
   }
 
   .btn-group {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 24px 0;
+    position: absolute;
     display: flex;
     justify-content: center;
-    gap: 24px;
+    gap: 16px;
   }
 }
 

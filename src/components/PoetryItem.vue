@@ -59,7 +59,7 @@ const handleClick = (data: IPoetry) => {
 
   &.is-active {
     writing-mode: initial;
-    margin-bottom: 80px;
+    // margin-bottom: 80px;
 
     &::before {
       width: 4px;
