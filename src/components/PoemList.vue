@@ -98,10 +98,10 @@ watchEffect(() => {
       </div>
     </div>
     <div class="btn-group">
-      <p-button direction="top" v-if="current < totalPage" text="末页" @click="current = totalPage"/>
+      <p-button direction="top" v-if="current < totalPage" text="末" @click="current = totalPage"/>
       <p-button direction="left" v-if="current > 1" text="上一页" @click="handlePre"/>
       <p-button v-if="current < totalPage" text="下一页" @click="handleNext"/>
-      <p-button direction="top" v-if="current > 1" text="首页" @click="current = 1"/>
+      <p-button direction="top" v-if="current > 1" text="首" @click="current = 1"/>
       <p-button direction="top" @click="back" text="目录"/>
     </div>
   </div>

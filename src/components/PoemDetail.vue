@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import {IPoem} from "@/type";
-import PModal from "./kits/Modal.vue"
+import PModal from "./kits/Modal.vue";
+import {Clipboard} from "@/utils/clipboard";
+import PToast from "@/components/kits/Toast.vue";
+import {ref} from "vue"
+import Button from "@/components/kits/Button.vue"
+
 
 defineProps({
   data: {
@@ -16,10 +21,16 @@ const visible = defineModel("visible", {
   default: false,
 })
 
+const showToast = ref(false);
+const handleCopy = (data: IPoem) => {
+  Clipboard.copy(data.title + "\n" + data.paragraphs.join("\n"));
+  showToast.value = true;
+};
 </script>
 
 <template>
-  <p-modal v-model:visible="visible">
+  <p-toast v-model="showToast" content="复制成功"/>
+  <p-modal v-model:visible="visible" @copy="handleCopy(data)">
     <div class="poem-detail">
       <div class="poem-detail-header">
         <div class="poem-detail-title">{{ data.title }}</div>
@@ -47,7 +58,7 @@ const visible = defineModel("visible", {
   justify-content: center;
   gap: 24px;
   font-size: 22px;
-  height: 100%;
+  height: calc(100% - 56px);
 
   .poem-detail-header {
     display: flex;

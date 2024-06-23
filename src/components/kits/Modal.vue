@@ -17,6 +17,10 @@ defineProps({
     default: ""
   }
 })
+const emit = defineEmits(["copy"])
+const handelCopy = () => {
+  emit("copy")
+}
 </script>
 
 <template>
@@ -27,6 +31,9 @@ defineProps({
           :style="{background:bgColor}"
           v-if="visible"
       >
+        <div class="modal-content">
+          <slot></slot>
+        </div>
         <div class="modal-footer">
           <p-button
               text="关闭"
@@ -35,9 +42,13 @@ defineProps({
               @mouseleave="cursorState.setCursor('default')"
               @click="visible = false"
           />
-        </div>
-        <div class="modal-content">
-          <slot></slot>
+          <p-button
+              text="复制"
+              direction="bottom"
+              @mouseenter="cursorState.setCursor('mini','')"
+              @mouseleave="cursorState.setCursor('default')"
+              @click="handelCopy"
+          />
         </div>
       </div>
     </transition>
@@ -55,6 +66,12 @@ defineProps({
   background: rgba(255, 255, 255, .5);
   backdrop-filter: saturate(120%) blur(10px);
 
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    padding: 16px 40px;
+  }
+
   .modal-footer {
     position: absolute;
     left: 0;
@@ -64,12 +81,7 @@ defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .modal-content {
-    width: 100%;
-    height: 100%;
-    padding: 0 40px;
+    gap: 16px;
   }
 }
 </style>

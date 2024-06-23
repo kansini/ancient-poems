@@ -2,7 +2,7 @@
 import {ref} from "vue"
 import {IPoem} from "@/type";
 import userMotion from "@/hooks/useMotion";
-import PoemDetail from "./PoemDetail.vue"
+import PoemDetail from "./PoemDetail.vue";
 
 const {initial, enter, leave} = userMotion().slideLeft;
 
@@ -17,13 +17,16 @@ defineProps({
   }
 })
 const showDetail = ref(false)
-
+const handelDetail = () => {
+  showDetail.value = true;
+}
 </script>
 
 <template>
+
   <poem-detail v-model:visible="showDetail" :data="data"/>
   <div
-      @click="showDetail = true"
+      @click="handelDetail"
       class="poems-list-item"
       v-motion
       :initial="initial"
@@ -59,7 +62,7 @@ const showDetail = ref(false)
   line-height: 1.5;
   cursor: pointer;
   background: rgba(255, 255, 255, 1);
-  padding:32px 16px 16px;
+  padding: 32px 16px 16px;
   border-radius: 16px;
   box-shadow: 4px 4px 0 2px rgba(255, 255, 255, .5), 8px 8px 0 2px rgba(255, 255, 255, .2);
   transition: all ease-in-out .5s;
