@@ -13,6 +13,10 @@ defineProps({
   direction: {
     type: String,
     default: ""
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 })
 const emit = defineEmits(["click", "mouseenter"])
@@ -33,6 +37,7 @@ const handleMouseLeave = () => {
       :initial="scaleIn.initial"
       :enter="scaleIn.enter"
       class="tb-btn"
+      :class="{disabled:disabled}"
       @click="handleToButton"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
@@ -54,7 +59,7 @@ button {
 
 .tb-btn {
   position: relative;
-  padding: 8px 24px;
+  padding: 8px 16px;
   width: max-content;
   height: 40px;
   border: 1px solid $color-primary;
@@ -70,6 +75,10 @@ button {
   cursor: pointer;
   transition: all ease .4s;
   font-family: inherit;
+
+  &.disabled {
+    opacity: 0 !important;
+  }
 
   &::before {
     content: '';

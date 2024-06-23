@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import {ref, watchEffect} from "vue";
+import {computed, ref, watchEffect} from "vue";
 import {getList} from "@/api/getList.ts";
 import {IPoem} from "@/type";
 import PButton from "@/components/kits/Button.vue";
-import PAnimation from "@/components/kits/Animation.vue";
-import PoemItem from "@/components/PoemItem.vue"
+import PoemItem from "@/components/PoemItem.vue";
+import {useCursorStore} from "@/store";
 
-
-const poemsList = ref<IPoem[]>([])
+const cursorState = useCursorStore();
+const poemsTotalList = ref<IPoem[]>([])
 const getPoemsList = (name: string) => {
   return new Promise((resolve) => {
     getList(`/poems/${name}.json`).then((res: any) => {
@@ -15,8 +15,26 @@ const getPoemsList = (name: string) => {
     })
   })
 }
+const pageSize = ref(5);
+const current = ref(1);
+const totalPage = computed(() => {
+  return Math.ceil(poemsTotalList.value.length / pageSize.value);
+});
+const poemsList = computed(() => {
+  // 总页数
+  // 确保当前页数在有效范围内
+  current.value = Math.min(Math.max(current.value, 1), totalPage.value);
+
+  // 根据当前页数和每页大小计算起始索引和结束索引
+  const startIndex = (current.value - 1) * pageSize.value;
+  const endIndex = startIndex + pageSize.value;
+
+  // 返回当前页的诗歌数据
+  return poemsTotalList.value.slice(startIndex, endIndex);
+})
 const emit = defineEmits(["back"])
 const back = () => {
+  current.value = 1
   emit("back")
 }
 const props = defineProps({
@@ -30,15 +48,37 @@ const show = defineModel("show", {
   type: Boolean
 })
 const loading = ref(true)
+const position = ref(0)
+const contentStyle = computed(() => {
+  return {
+    transform: `translateX(${position.value}%)`
+  }
+})
+const reload = () => {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false
+  })
+}
+const handlePre = () => {
+  if (current.value > 1) {
+    current.value--;
+    reload();
+  }
+}
+const handleNext = () => {
+  if (current.value < totalPage.value) {
+    current.value++;
+    reload();
+  }
+}
 watchEffect(() => {
   if (show.value) {
     loading.value = true;
     getPoemsList(props.name).then((res: any) => {
-      poemsList.value = res
+      poemsTotalList.value = res
     }).finally(() => {
-      setTimeout(() => {
-        loading.value = false
-      }, 1000);
+      loading.value = false
     })
   }
 })
@@ -46,28 +86,31 @@ watchEffect(() => {
 
 <template>
   <div class="poems-list-container" v-if="show">
-    <transition name="fadeIn">
-      <div class="poems-list-loading" v-if="loading">
-        <p-animation
-            autoplay
-            name="loading-book"
-            :width="240"
-            :height="240"
-        />
-      </div>
-    </transition>
-    <div class="poems-list">
-      <div class="poems-list-content" v-if="!loading">
-        <template v-for="(item, index) in poemsList">
+    <div class="poems-list-nav--pre"
+         v-if="current > 1"
+         @mouseenter="cursorState.setCursor('large','上一页')"
+         @click="handlePre"
+    ></div>
+    <div class="poems-list-nav--next"
+         @mouseenter="cursorState.setCursor('large','下一页')"
+         @click="handleNext"></div>
+    <div class="poems-list" @mouseenter="cursorState.setCursor('default')">
+      <div class="poems-list-content"
+           v-if="!loading"
+           :style="contentStyle"
+      >
+        <template v-for="(item,index) in poemsList">
           <poem-item
-              v-if="index < 5"
-              :data="item"
-              :delay="200+ 300 * index"
-          />
+              :delay="100+ index * 200"
+              :data="item"/>
         </template>
       </div>
     </div>
-    <p-button @click="back" text="返回"/>
+    <div class="btn-group">
+      <p-button v-if="current > 1" text="上一页" @click="handlePre"/>
+      <p-button v-if="current < totalPage" text="下一页" @click="handleNext"/>
+      <p-button @click="back" text="返回"/>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -78,11 +121,32 @@ watchEffect(() => {
   width: 100%;
   gap: 64px;
 
+  [class^="poems-list-nav--"] {
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+    background: rgba(104, 54, 26, 0);
+    backdrop-filter: blur(8px);
+  }
+
+  .poems-list-nav--pre {
+    left: 0;
+  }
+
+  .poems-list-nav--next {
+    right: 0;
+  }
+
   .poems-list {
+    position: relative;
     font-size: 16px;
-    width: 100%;
-    padding: 0 40px;
+    width: calc(100% - 240px);
     height: 400px;
+    overflow: hidden;
+
 
     .poems-list-content {
       width: 100%;
@@ -90,7 +154,8 @@ watchEffect(() => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 64px;
+      gap: 48px;
+      transition: all ease .3s;
     }
   }
 
@@ -103,9 +168,12 @@ watchEffect(() => {
     height: 100vh;
     left: 0;
     top: 0;
-    //background: rgba(255, 255, 255, .1);
-    //backdrop-filter: blur(4px);
-    //z-index: 999;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
   }
 }
 

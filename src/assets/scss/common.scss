@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'FangZhengFangSong', serif;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100vh;
 }
 
 li {

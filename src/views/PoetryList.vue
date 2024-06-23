@@ -58,7 +58,7 @@ onMounted(() => {
               v-if="current === -1 || current === index"
               :active="current === index"
               :data="poetry"
-              :delay="100 + 200 * index"
+              :delay="200 * index"
               @click="onClickItem"
           />
         </template>

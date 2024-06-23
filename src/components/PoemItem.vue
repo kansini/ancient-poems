@@ -4,7 +4,7 @@ import {IPoem} from "@/type";
 import userMotion from "@/hooks/useMotion";
 import PoemDetail from "./PoemDetail.vue"
 
-const {initial, enter} = userMotion().scaleIn;
+const {initial, enter} = userMotion().fadeIn;
 
 defineProps({
   data: {
@@ -41,9 +41,6 @@ const showDetail = ref(false)
           {{ line }}
         </div>
       </template>
-      <div v-if="data.paragraphs.length > 4">
-        …
-      </div>
     </div>
   </div>
 </template>

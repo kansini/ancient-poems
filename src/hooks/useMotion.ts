@@ -18,7 +18,7 @@ export default function () {
     const fadeIn = reactive<IMotionOption>({
         initial: {
             opacity: 0,
-            filter: "blur(20px)"
+            filter: "blur(10px)"
         },
         enter: {
             opacity: 1,
@@ -26,7 +26,7 @@ export default function () {
         },
         leave: {
             opacity: 0,
-            filter: "blur(20px)"
+            filter: "blur(10px)"
         }
     })
     const scaleIn = reactive<IMotionOption>({

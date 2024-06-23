@@ -27,7 +27,7 @@ defineProps({
           :style="{background:bgColor}"
           v-if="visible"
       >
-        <div class="modal-header">
+        <div class="modal-footer">
           <p-button
               text="关闭"
               @mouseenter="cursorState.setCursor('mini','')"
@@ -54,15 +54,15 @@ defineProps({
   background: rgba(255, 255, 255, .5);
   backdrop-filter: saturate(120%) blur(10px);
 
-  .modal-header {
+  .modal-footer {
     position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
     width: 100%;
-    padding: 16px;
+    padding: 16px 0;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .modal-content {
