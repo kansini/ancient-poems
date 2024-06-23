@@ -63,9 +63,31 @@ export default function () {
             y: -200
         }
     })
+    const slideLeft = reactive<IMotionOption>({
+        initial: {
+            opacity: 0,
+            filter: "blur(8px)",
+            x: 200,
+            y: -100
+        },
+        enter: {
+            opacity: 1,
+            filter: "blur(0px)",
+            x: 0,
+            y: 0
+        },
+        leave: {
+            opacity: 0,
+            filter: "blur(10px)",
+            x: 200,
+            y: -100,
+            'box-shadow': '4px 4px 0 2px rgba(255, 255, 255, .5), 8px 8px 0 2px rgba(255, 255, 255, .2)'
+        }
+    })
     return {
         fadeIn,
         scaleIn,
-        slideDown
+        slideDown,
+        slideLeft
     }
 }

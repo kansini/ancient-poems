@@ -7,7 +7,7 @@ defineProps({
   },
   color: {
     type: String,
-    default: '#68361A'
+    default: ''
   }
 })
 const emit = defineEmits(['click', 'mouseenter'])
@@ -42,6 +42,9 @@ const onClick = () => {
 .github-icon {
   transition: all ease-in .3s;
   cursor: pointer;
+  svg{
+    fill: $color-primary;
+  }
 
   &:hover {
     transform: scale(1.2);

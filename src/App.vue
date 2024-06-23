@@ -21,7 +21,7 @@ const cursorState = useCursorStore();
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: $color-light;
+  background: $color-bg;
   padding: 0 16px;
 }
 </style>

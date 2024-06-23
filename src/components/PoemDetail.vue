@@ -46,7 +46,7 @@ const visible = defineModel("visible", {
   align-items: center;
   justify-content: center;
   gap: 24px;
-  font-size: 20px;
+  font-size: 22px;
   height: 100%;
 
   .poem-detail-header {
@@ -73,7 +73,6 @@ const visible = defineModel("visible", {
   .poem-detail-content {
     display: flex;
     flex-direction: column;
-
     max-height: calc(100% - 48px);
     overflow-y: auto;
     gap: 16px;

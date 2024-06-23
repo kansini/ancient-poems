@@ -18,7 +18,7 @@ const props = defineProps({
   },
   renderer: {
     type: String,
-    default: 'canvas'
+    default: 'svg'
   },
   background: {
     type: String,
@@ -40,7 +40,7 @@ const init = () => {
   const cv: any = document.getElementById(id)
   lottie.loadAnimation({
     container: cv,
-    renderer: 'canvas',
+    renderer: 'svg',
     loop: true,
     autoplay: props.autoplay,
     path: `./aniList/${props.name}.json`

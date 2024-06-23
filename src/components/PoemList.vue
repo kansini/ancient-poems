@@ -15,7 +15,7 @@ const getPoemsList = (name: string) => {
     })
   })
 }
-const pageSize = ref(5);
+const pageSize = ref(4);
 const current = ref(1);
 const totalPage = computed(() => {
   return Math.ceil(poemsTotalList.value.length / pageSize.value);
@@ -92,7 +92,7 @@ watchEffect(() => {
       <div class="poems-list-content" v-if="!loading">
         <template v-for="(item,index) in poemsList">
           <poem-item
-              :delay="index * 200"
+              :delay="index * 100"
               :data="item"/>
         </template>
       </div>
