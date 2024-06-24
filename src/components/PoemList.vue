@@ -15,7 +15,7 @@ const getPoemsList = (name: string) => {
     })
   })
 }
-const pageSize = ref(4);
+const pageSize = ref(5);
 const current = ref(1);
 const totalPage = computed(() => {
   return Math.ceil(poemsTotalList.value.length / pageSize.value);

@@ -38,18 +38,17 @@ onClickOutside(toastRef, () => visible.value = false)
 .p-toast {
   position: fixed;
   top: 16px;
-  width: 184px;
+  width: 128px;
   height: 40px;
-  left: calc(50% - 92px);
+  left: calc(50% - 64px);
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
   color: #fff;
   z-index: 9999;
-  font-size: 13px;
+  font-size: 15px;
   border-radius: 16px;
-  //background: $color-red;
 
   &.inset-circle {
     background-size: 70% 70%;
