@@ -1,3 +1,5 @@
+@import "variable";
+
 * {
   margin: 0;
   padding: 0;
@@ -19,3 +21,11 @@ i {
   font-style: normal;
 }
 
+a {
+  color: $color-primary;
+  transition: color ease .3s;
+
+  &:hover {
+    color: $color-gold;
+  }
+}

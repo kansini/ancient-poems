@@ -170,8 +170,8 @@ onUnmounted(() => {
     mix-blend-mode: difference;
 
     & + .custom-cursor-inner {
-      width: 8px;
-      height: 8px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       mix-blend-mode: difference;
     }
