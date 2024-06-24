@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onClickOutside} from "@vueuse/core"
+import {onClickOutside} from "@vueuse/core";
 import {ref, watchEffect} from "vue";
 
 const toastRef = ref()

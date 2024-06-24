@@ -3,13 +3,12 @@ import {IPoem} from "@/type";
 import PModal from "./kits/Modal.vue";
 import {Clipboard} from "@/utils/clipboard";
 import PToast from "@/components/kits/Toast.vue";
-import {ref} from "vue"
-import Button from "@/components/kits/Button.vue"
+import {ref} from "vue";
 
 
 defineProps({
   data: {
-    type: Object as () => IPoem,
+    type: [Object as () => IPoem, String],
     default: ""
   },
   delay: {

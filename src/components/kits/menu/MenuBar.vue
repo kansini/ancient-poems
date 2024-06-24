@@ -2,9 +2,10 @@
 import GithubIcon from "./GithubIcon.vue";
 import FullscreenTrigger from "./FullscreenTrigger.vue";
 import PAudio from "./Audio.vue";
-// import PInfo from "./Info.vue";
+import MenuItem from "./MenuItem.vue";
 import {useFullScreenStore} from "@/store";
 import {useCursorStore} from "@/store";
+import Contents from "../contents/Contents.vue"
 
 const cursorState = useCursorStore();
 const setCursor = (size: string, text: string) => {
@@ -27,9 +28,11 @@ const onMouseenterAni = (name: string) => {
 
 <template>
   <div class="bav-bar">
-    <!--    <div class="icon-container">-->
-    <!--      <P-info @mouseenter="onMouseenter('言')"/>-->
-    <!--    </div>-->
+    <div class="icon-container">
+      <menu-item @mouseenter="onMouseenter('录')">
+        <contents/>
+      </menu-item>
+    </div>
     <div class="icon-container">
       <fullscreen-trigger @mouseenter="onMouseenter(fullScreenStore.isFullScreen ?'退':'全')"/>
     </div>

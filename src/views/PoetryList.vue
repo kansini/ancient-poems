@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, reactive, ref} from "vue";
-import {getList} from "@/api/getList.ts";
+import {getList} from "@/api/getList";
 import {IPoetry} from "@/type";
 import PoetryItem from "@/components/PoetryItem.vue";
 import {useRouter} from "vue-router";

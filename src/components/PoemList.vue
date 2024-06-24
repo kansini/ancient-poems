@@ -102,7 +102,7 @@ watchEffect(() => {
       <p-button direction="left" v-if="current > 1" text="上一页" @click="handlePre"/>
       <p-button v-if="current < totalPage" text="下一页" @click="handleNext"/>
       <p-button direction="top" v-if="current > 1" text="首" @click="current = 1"/>
-      <p-button direction="top" @click="back" text="目录"/>
+      <p-button direction="top" @click="back" text="返回"/>
     </div>
   </div>
 </template>

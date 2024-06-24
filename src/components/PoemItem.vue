@@ -23,7 +23,6 @@ const handelDetail = () => {
 </script>
 
 <template>
-
   <poem-detail v-model:visible="showDetail" :data="data"/>
   <div
       @click="handelDetail"
