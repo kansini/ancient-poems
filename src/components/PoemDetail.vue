@@ -58,6 +58,8 @@ const handleCopy = (data: IPoem) => {
   gap: 24px;
   font-size: 22px;
   height: calc(100% - 56px);
+  width: 50%;
+  margin: 0 auto;
 
   .poem-detail-header {
     display: flex;
