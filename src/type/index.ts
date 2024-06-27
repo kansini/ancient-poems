@@ -19,3 +19,10 @@ export interface IPoetry {
     name: string;
     desc: string;
 }
+
+export interface IPoemByDynasty {
+    title: string;
+    dynasty: string;
+    author: string;
+    content: string;
+}

@@ -51,7 +51,11 @@ onMounted(() => {
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
     >
-      <cover-title v-if="current === -1" @click="router.push('/')"/>
+      <cover-title
+          class="cover-title"
+          v-if="current === -1"
+          @click="router.push('/')"
+      />
       <div class="poetry-list-content">
         <template v-for="(poetry,index) in poetryList">
           <poetry-item
@@ -74,12 +78,16 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+
+
 .poetry-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
   width: 100%;
+  height: 100vh;
+  justify-content: center;
 
   .poetry-list-container {
     display: flex;
@@ -102,4 +110,17 @@ onMounted(() => {
 
 }
 
+@media (max-width: 768px) {
+  .cover-title {
+    display: none;
+  }
+  .poetry-list {
+    .poetry-list-container {
+      .poetry-list-content {
+        justify-content: flex-end;
+        gap:64px 48px;
+      }
+    }
+  }
+}
 </style>

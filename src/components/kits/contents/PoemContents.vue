@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref, watchEffect} from "vue";
-import {getList} from "@/api/getList.ts";
+import {getList} from "@/api/getList";
 import {IPoem} from "@/type";
 import PoemDetail from "@/components/PoemDetail.vue";
 

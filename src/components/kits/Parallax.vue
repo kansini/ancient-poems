@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {computed, reactive, ref} from "vue"
-import type {CSSProperties} from "vue"
-import {useParallax} from "@vueuse/core"
+import {computed, reactive, ref} from "vue";
+import type {CSSProperties} from "vue";
+import {useParallax} from "@vueuse/core";
 
 const target = ref(null)
 const parallax = reactive(useParallax(target))

@@ -8,7 +8,7 @@ import {ref} from "vue";
 
 defineProps({
   data: {
-    type: [Object as () => IPoem, String],
+    type: Object as () => IPoem,
     default: ""
   },
   delay: {

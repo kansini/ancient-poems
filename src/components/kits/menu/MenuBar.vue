@@ -65,4 +65,10 @@ const onMouseenterAni = (name: string) => {
     justify-content: center;
   }
 }
+
+@media (max-width: 768px) {
+  .bav-bar {
+    display: none;
+  }
+}
 </style>

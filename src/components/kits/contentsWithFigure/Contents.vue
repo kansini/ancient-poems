@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {reactive, onMounted} from "vue";
-import {getList} from "@/api/getList.ts";
+import {getList} from "@/api/getList";
 import {IPoetry} from "@/type";
 import PoemList from "./PoemList.vue";
 import {useCursorStore} from "@/store";

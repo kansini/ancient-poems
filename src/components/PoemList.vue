@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import {computed, ref, watchEffect} from "vue";
-import {getList} from "@/api/getList.ts";
+import {getList} from "@/api/getList";
 import {IPoem} from "@/type";
 import PButton from "@/components/kits/Button.vue";
 import PoemItem from "@/components/PoemItem.vue";
 import {useCursorStore} from "@/store";
+
 
 const cursorState = useCursorStore();
 const poemsTotalList = ref<IPoem[]>([])
@@ -175,5 +176,10 @@ watchEffect(() => {
   }
 }
 
+@media (max-width: 768px) {
+  [class^="poems-list-nav--"] {
+    display: none;
+  }
+}
 
 </style>
