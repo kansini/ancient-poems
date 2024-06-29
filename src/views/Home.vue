@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import CoverTitle from "@/components/Title.vue";
+import SvgAnimate from "@/components/kits/SvgAnimate.vue"
 
 
 const router = useRouter();
@@ -12,7 +13,9 @@ const handleEnter = () => {
 
 <template>
   <div class="home">
-    <cover-title @click="handleEnter"/>
+    <svg-animate>
+      <cover-title @click="handleEnter"/>
+    </svg-animate>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -21,7 +24,6 @@ const handleEnter = () => {
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
