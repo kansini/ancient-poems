@@ -5,7 +5,8 @@ import PAudio from "./Audio.vue";
 import MenuItem from "./MenuItem.vue";
 import {useFullScreenStore} from "@/store";
 import {useCursorStore} from "@/store";
-import Contents from "../contentsWithFigure/Contents.vue"
+import Contents from "../contentsWithFigure/Contents.vue";
+import Links from "@/components/Links.vue";
 
 const cursorState = useCursorStore();
 const setCursor = (size: string, text: string) => {
@@ -33,14 +34,19 @@ const onMouseenterAni = (name: string) => {
       </menu-item>
     </div>
     <div class="icon-container">
+      <menu-item text="链" @mouseenter="onMouseenter('链')">
+        <links/>
+      </menu-item>
+    </div>
+    <div class="icon-container">
       <fullscreen-trigger @mouseenter="onMouseenter(fullScreenStore.isFullScreen ?'退':'全')"/>
     </div>
     <div class="icon-container">
       <github-icon @mouseenter="onMouseenter('庫')"/>
     </div>
-    <div class="icon-container">
-      <p-audio @mouseenter="onMouseenterAni"/>
-    </div>
+<!--    <div class="icon-container">-->
+<!--      <p-audio @mouseenter="onMouseenterAni"/>-->
+<!--    </div>-->
   </div>
 </template>
 

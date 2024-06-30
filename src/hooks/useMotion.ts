@@ -11,7 +11,7 @@ interface IMotion {
 interface IMotionOption {
     initial: IMotion;
     enter: IMotion;
-    leave: IMotion;
+    leave?: IMotion;
 }
 
 export default function () {
