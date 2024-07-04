@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import GithubIcon from "./GithubIcon.vue";
 import FullscreenTrigger from "./FullscreenTrigger.vue";
-import PAudio from "./Audio.vue";
 import MenuItem from "./MenuItem.vue";
 import {useFullScreenStore} from "@/store";
 import {useCursorStore} from "@/store";
@@ -19,9 +18,6 @@ const fullScreenStore = useFullScreenStore()
 const onMouseenter = (name: string) => {
   setCursor("small", name)
   emit("mouseenter", name)
-}
-const onMouseenterAni = (name: string) => {
-  onMouseenter(name)
 }
 
 </script>
@@ -44,9 +40,6 @@ const onMouseenterAni = (name: string) => {
     <div class="icon-container">
       <github-icon @mouseenter="onMouseenter('庫')"/>
     </div>
-<!--    <div class="icon-container">-->
-<!--      <p-audio @mouseenter="onMouseenterAni"/>-->
-<!--    </div>-->
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 {
-  "name": "vgsap",
+  "name": "ancient-poems",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,7 +16,6 @@
     "axios": "^1.7.2",
     "chinese-poetry": "^1.4.1",
     "gsap": "^3.12.5",
-    "gsap-trial": "^3.12.5",
     "lottie-web": "^5.12.2",
     "papaparse": "^5.4.1",
     "pinia": "^2.1.7",

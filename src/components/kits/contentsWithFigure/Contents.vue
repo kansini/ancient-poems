@@ -28,7 +28,7 @@ onMounted(() => {
       <div class="contents-withFigure-cate-list">
         <div class="contents-withFigure-cate" v-for="cate in poetryList">
           <div class="contents-withFigure-cate-thumb"
-                @mouseenter="cursorState.setCursor('large',cate.title)"
+               @mouseenter="cursorState.setCursor('large',cate.title)"
                :style="{background: `rgba(255,255,255,.1) url(./thumbs/${cate.name}.jpg) center`}">
             <div class="contents-withFigure-cate-title">{{ cate.title }}</div>
           </div>
@@ -79,16 +79,28 @@ onMounted(() => {
         transition: all ease-in .3s;
 
         .contents-withFigure-cate-thumb {
+          position: relative;
           display: flex;
           justify-content: flex-end;
           width: 100%;
           aspect-ratio: .815;
-          border-radius: 16px;
+          border-radius: 8px;
           overflow: hidden;
           background-size: cover !important;
           padding: 16px;
           background-blend-mode: difference;
           transition: all ease-in .3s;
+
+          &::before {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.40) 3%, rgba(255, 255, 255, 0.40) 4%, rgba(255, 255, 255, 0.08) 6%);
+            z-index: 9;
+          }
 
 
           .contents-withFigure-cate-title {

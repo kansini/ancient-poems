@@ -9,7 +9,10 @@ const cursorState = useCursorStore();
 
 <template>
   <menu-bar/>
-  <cursor :size="cursorState.size" :inner-text="cursorState.text"/>
+  <cursor
+      :size="cursorState.size"
+      :inner-text="cursorState.text"
+  />
   <router-view/>
 </template>
 
