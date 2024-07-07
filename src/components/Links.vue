@@ -28,6 +28,11 @@ const links = reactive<ILink[]>([
     title: "中国传统乐器",
     thumbnail: "music",
     link: "https://music.ancient-classics.cn/",
+  },
+  {
+    title: "中国成语词典",
+    thumbnail: "idiom",
+    link: "https://idiom.ancient-classics.cn/",
   }
 ])
 </script>
